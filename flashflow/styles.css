@@ -1,4 +1,5 @@
 :root {
+    /* colors */
     --white: #FFFFFF;
 
     --purple-050: #F8F7FF;
@@ -9,4 +10,35 @@
     --gray-100: #E2E2E2;
     --gray-200: #3F4658;
     --gray-300: #1E1E1E;
+
+    /* weights */
+    --medium: 500;
+    --semibold: 600;
+    --bold: 700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--purple-050);
+    height: 100vh;
+    width: 100vw;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: var(--bold);
+    color: var(--purple-200);
 }
