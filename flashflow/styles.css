@@ -59,10 +59,12 @@ h1 {
 
 .card-quantity {
     font-size: 1.6rem;
+    height: 1.9rem;
 }
 
 .card-help {
     font-size: 1.4rem;
+    height: 1.7rem;
 }
 
 .card-quantity,
@@ -107,6 +109,7 @@ h1 {
 .button-container button {
     width: 12.4rem;
     height: 4rem;
+    line-height: 1.7rem;
     background-color: var(--purple-300);
     color: var(--white);
     font-size: 1.4rem;
