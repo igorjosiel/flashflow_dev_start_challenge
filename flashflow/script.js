@@ -26,6 +26,10 @@ const startButton   = document.querySelector("button.button-start");
 const cardContainer = document.getElementById("card-content");
 const buttonNext    = document.getElementById("button-next");
 const cardQuantity  = document.querySelector("p.card-quantity");
+const cardQuestion  = document.querySelector("p.question");
+
+const flashcardsSize = flashcards.length;
+const currentFlashcard = 0;
 
 function startFlashCards() {
     startButton.classList.add("display-none");
@@ -35,7 +39,8 @@ function startFlashCards() {
 
     buttonNext.classList.remove("display-none");
 
-    cardQuantity.textContent = `Card 0 de ${flashcards.length}`;
+    cardQuantity.textContent = `Card ${currentFlashcard} de ${flashcardsSize}`;
+    cardQuestion.textContent = flashcards[currentFlashcard].question;
 }
 
 startButton.addEventListener("click", startFlashCards);
