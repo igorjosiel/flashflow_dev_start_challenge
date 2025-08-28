@@ -25,7 +25,6 @@ const flashcards = [
 const startButton  = document.querySelector("button.button-start");
 const cardSection  = document.getElementById("card-section");
 const buttonNext   = document.getElementById("button-next");
-const cardQuantity = document.querySelector("p.card-quantity");
 const cardQuestion = document.querySelector("p.question");
 const cardContent  = document.querySelector("div.card-content");
 
@@ -42,7 +41,12 @@ function startFlashCards() {
 
     buttonNext.classList.remove("display-none");
 
+    const cardQuantity = document.createElement("p");
+    cardQuantity.classList.add("card-quantity");
     cardQuantity.textContent = `Card ${currentFlashcard + 1} de ${flashcardsSize}`;
+    
+    cardSection.prepend(cardQuantity);
+
     cardQuestion.textContent = flashcards[currentFlashcard].question;
 }
 
