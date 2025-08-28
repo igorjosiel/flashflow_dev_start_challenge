@@ -22,17 +22,20 @@ const flashcards = [
 ];
 
 
-const startButton = document.querySelector("button.button-start");
+const startButton   = document.querySelector("button.button-start");
 const cardContainer = document.getElementById("card-content");
-const buttonNext = document.getElementById("button-next");
+const buttonNext    = document.getElementById("button-next");
+const cardQuantity  = document.querySelector("p.card-quantity");
 
 function startFlashCards() {
     startButton.classList.add("display-none");
     
     cardContainer.classList.remove("display-none");
     cardContainer.classList.add("card-container");
-    
+
     buttonNext.classList.remove("display-none");
+
+    cardQuantity.textContent = `Card 0 de ${flashcards.length}`;
 }
 
 startButton.addEventListener("click", startFlashCards);
