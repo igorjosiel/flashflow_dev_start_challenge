@@ -23,9 +23,16 @@ const flashcards = [
 
 
 const startButton = document.querySelector("button.button-start");
+const cardContainer = document.getElementById("card-content");
+const buttonNext = document.getElementById("button-next");
 
 function startFlashCards() {
-    console.log("Teste");
+    startButton.classList.add("display-none");
+    
+    cardContainer.classList.remove("display-none");
+    cardContainer.classList.add("card-container");
+    
+    buttonNext.classList.remove("display-none");
 }
 
 startButton.addEventListener("click", startFlashCards);
