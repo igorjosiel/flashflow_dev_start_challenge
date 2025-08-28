@@ -96,7 +96,8 @@ h1 {
 }
 
 .card-content:has(> .answer) {
-  background-color: var(--gray-100);
+    background-color: var(--gray-100);
+    cursor: default;
 }
 
 .question {

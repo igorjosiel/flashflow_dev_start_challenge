@@ -57,6 +57,8 @@ function revealAnswer() {
 
     cardQuestion.classList.add("display-none");
 
+    cardContent.removeChild(cardQuestion);
+
     const cardAnswer = document.createElement("p");
     cardAnswer.classList.add("answer");
     cardAnswer.textContent = flashcards[currentFlashcard].answer;
