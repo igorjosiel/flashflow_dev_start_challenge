@@ -22,25 +22,45 @@ const flashcards = [
 ];
 
 
-const startButton   = document.querySelector("button.button-start");
-const cardContainer = document.getElementById("card-content");
-const buttonNext    = document.getElementById("button-next");
-const cardQuantity  = document.querySelector("p.card-quantity");
-const cardQuestion  = document.querySelector("p.question");
+const startButton  = document.querySelector("button.button-start");
+const cardSection  = document.getElementById("card-section");
+const buttonNext   = document.getElementById("button-next");
+const cardQuantity = document.querySelector("p.card-quantity");
+const cardQuestion = document.querySelector("p.question");
+const cardContent  = document.querySelector("div.card-content");
 
 const flashcardsSize = flashcards.length;
-const currentFlashcard = 0;
+
+let currentFlashcard = 0;
+let clicksOnTheCard  = 0;
 
 function startFlashCards() {
     startButton.classList.add("display-none");
     
-    cardContainer.classList.remove("display-none");
-    cardContainer.classList.add("card-container");
+    cardSection.classList.remove("display-none");
+    cardSection.classList.add("card-container");
 
     buttonNext.classList.remove("display-none");
 
-    cardQuantity.textContent = `Card ${currentFlashcard} de ${flashcardsSize}`;
+    cardQuantity.textContent = `Card ${currentFlashcard + 1} de ${flashcardsSize}`;
     cardQuestion.textContent = flashcards[currentFlashcard].question;
 }
 
+function revealAnswer() {
+    if (clicksOnTheCard > 0) {
+        return;
+    }
+
+    cardQuestion.classList.add("display-none");
+
+    const cardAnswer = document.createElement("p");
+    cardAnswer.classList.add("answer");
+    cardAnswer.textContent = flashcards[currentFlashcard].answer;
+
+    cardContent.appendChild(cardAnswer);
+
+    clicksOnTheCard += 1;
+}
+
 startButton.addEventListener("click", startFlashCards);
+cardContent.addEventListener("click", revealAnswer);

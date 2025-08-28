@@ -92,7 +92,7 @@ h1 {
 
 .card-content:has(> .question):hover {
     cursor: pointer;
-    border: 0.2rem solid var(--purple-300);
+    border: 0.2rem solid var(--gray-100);
 }
 
 .card-content:has(> .answer) {
