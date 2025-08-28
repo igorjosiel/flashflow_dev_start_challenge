@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
+
+    <script src="script.js" defer></script>
     
     <title>FlashFlow</title>
 </head>
@@ -17,7 +19,8 @@
     <main>
         <h1>FlashFlow</h1>
 
-        <section class="card-container">
+        <!-- card-container -->
+        <section class="display-none">
             <p class="card-quantity">Card 1 de 5</p>
 
             <div class="card-content">
@@ -29,7 +32,8 @@
         </section>
 
         <div class="button-container">
-            <button>Próximo Card</button>
+            <button class="display-none">Próximo Card</button>
+            <button class="button-start">Iniciar</button>
         </div>
     </main>
 </body>

@@ -57,6 +57,10 @@ h1 {
     margin: 3.5rem 0;
 }
 
+.display-none {
+    display: none !important;
+}
+
 .card-quantity {
     font-size: 1.6rem;
     height: 1.9rem;
@@ -127,4 +131,8 @@ h1 {
 
 .button-container button:hover {
     background-color: var(--purple-200);
+}
+
+.button-start {
+    margin-top: 1rem;
 }
