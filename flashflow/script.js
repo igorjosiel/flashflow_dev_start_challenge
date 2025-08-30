@@ -30,7 +30,7 @@ const cardContent  = document.querySelector("div.card-content");
 const flashcardsSize = flashcards.length;
 
 let currentFlashcard = 0;
-let clicksOnTheCard  = 0;
+let firstClickOnTheCard = false;
 
 function createCardQuantityParagraph() {
 	const cardQuantity = document.createElement("p");
@@ -65,9 +65,7 @@ function startFlashCards() {
 }
 
 function revealAnswer() {
-    if (clicksOnTheCard > 0) {
-        return;
-    }
+    if (firstClickOnTheCard) return;
 
     const cardQuestion = document.querySelector("p.question");
 	cardQuestion.classList.add("display-none");
@@ -80,16 +78,16 @@ function revealAnswer() {
 
     cardContent.appendChild(cardAnswer);
 
-    clicksOnTheCard += 1;
+    firstClickOnTheCard = true;
 }
 
 function revealNextQuestion() {
 	const isLastFlashcard = currentFlashcard === (flashcardsSize - 1);
 
-	if (isLastFlashcard) return;
+	if (isLastFlashcard || !firstClickOnTheCard) return;
 	else {
 		currentFlashcard += 1;
-		clicksOnTheCard   = 0;
+		firstClickOnTheCard = false;
 	}
 
 	const cardAnswer = document.querySelector("p.answer");
