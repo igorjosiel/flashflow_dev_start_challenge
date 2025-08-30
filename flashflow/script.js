@@ -45,9 +45,39 @@ function getCardQuantityParagraph() {
 	return cardQuantity;
 }
 
-function renderCardQuantity() {
+function renderCardQuantityParagraph() {
 	const cardQuantity = getCardQuantityParagraph();
     cardQuantity.textContent = `Card ${currentFlashcard + 1} de ${flashcardsSize}`;
+}
+
+function createCardQuestionParagraph() {
+	const cardQuestion = document.createElement("p");
+    cardQuestion.classList.add("question");
+	cardQuestion.textContent = flashcards[currentFlashcard].question;
+
+	cardContent.appendChild(cardQuestion);
+}
+
+function createCardAnswerParagraph() {
+	const cardAnswer = document.createElement("p");
+    cardAnswer.classList.add("answer");
+    cardAnswer.textContent = flashcards[currentFlashcard].answer;
+
+	cardContent.appendChild(cardAnswer);
+}
+
+function removeCardQuestionParagraph() {
+	const cardQuestion = document.querySelector("p.question");
+	cardQuestion.classList.add("display-none");
+
+    cardContent.removeChild(cardQuestion);
+}
+
+function removeCardAnswerParagraph() {
+	const cardAnswer = document.querySelector("p.answer");
+	cardAnswer.classList.add("display-none");
+
+	cardContent.removeChild(cardAnswer);
 }
 
 function startFlashCards() {
@@ -59,7 +89,7 @@ function startFlashCards() {
     buttonNext.classList.remove("display-none");
 
 	createCardQuantityParagraph();
-	renderCardQuantity();
+	renderCardQuantityParagraph();
 
 	cardQuestion.textContent = flashcards[currentFlashcard].question;
 }
@@ -67,16 +97,8 @@ function startFlashCards() {
 function revealAnswer() {
     if (firstClickOnTheCard) return;
 
-    const cardQuestion = document.querySelector("p.question");
-	cardQuestion.classList.add("display-none");
-
-    cardContent.removeChild(cardQuestion);
-
-    const cardAnswer = document.createElement("p");
-    cardAnswer.classList.add("answer");
-    cardAnswer.textContent = flashcards[currentFlashcard].answer;
-
-    cardContent.appendChild(cardAnswer);
+    removeCardQuestionParagraph();
+    createCardAnswerParagraph();
 
     firstClickOnTheCard = true;
 }
@@ -90,18 +112,9 @@ function revealNextQuestion() {
 		firstClickOnTheCard = false;
 	}
 
-	const cardAnswer = document.querySelector("p.answer");
-	cardAnswer.classList.add("display-none");
-
-	renderCardQuantity();
-
-	cardContent.removeChild(cardAnswer);
-
-	const cardQuestion = document.createElement("p");
-    cardQuestion.classList.add("question");
-	cardQuestion.textContent = flashcards[currentFlashcard].question;
-
-	cardContent.appendChild(cardQuestion);
+	removeCardAnswerParagraph();
+	createCardQuestionParagraph();
+	renderCardQuantityParagraph();
 }
 
 startButton.addEventListener("click", startFlashCards);
