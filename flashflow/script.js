@@ -21,7 +21,6 @@ const flashcards = [
 	},
 ];
 
-
 const startButton  = document.querySelector("button.button-start");
 const cardSection  = document.getElementById("card-section");
 const buttonNext   = document.getElementById("button-next");
@@ -33,6 +32,24 @@ const flashcardsSize = flashcards.length;
 let currentFlashcard = 0;
 let clicksOnTheCard  = 0;
 
+function createCardQuantityParagraph() {
+	const cardQuantity = document.createElement("p");
+	cardQuantity.classList.add("card-quantity");
+
+	cardSection.prepend(cardQuantity);
+}
+
+function getCardQuantityParagraph() {
+	const cardQuantity = document.querySelector("p.card-quantity");
+
+	return cardQuantity;
+}
+
+function renderCardQuantity() {
+	const cardQuantity = getCardQuantityParagraph();
+    cardQuantity.textContent = `Card ${currentFlashcard + 1} de ${flashcardsSize}`;
+}
+
 function startFlashCards() {
     startButton.classList.add("display-none");
     
@@ -41,13 +58,10 @@ function startFlashCards() {
 
     buttonNext.classList.remove("display-none");
 
-    const cardQuantity = document.createElement("p");
-    cardQuantity.classList.add("card-quantity");
-    cardQuantity.textContent = `Card ${currentFlashcard + 1} de ${flashcardsSize}`;
-    
-    cardSection.prepend(cardQuantity);
+	createCardQuantityParagraph();
+	renderCardQuantity();
 
-    cardQuestion.textContent = flashcards[currentFlashcard].question;
+	cardQuestion.textContent = flashcards[currentFlashcard].question;
 }
 
 function revealAnswer() {
@@ -55,7 +69,8 @@ function revealAnswer() {
         return;
     }
 
-    cardQuestion.classList.add("display-none");
+    const cardQuestion = document.querySelector("p.question");
+	cardQuestion.classList.add("display-none");
 
     cardContent.removeChild(cardQuestion);
 
@@ -68,5 +83,29 @@ function revealAnswer() {
     clicksOnTheCard += 1;
 }
 
+function revealNextQuestion() {
+	const isLastFlashcard = currentFlashcard === (flashcardsSize - 1);
+
+	if (isLastFlashcard) return;
+	else {
+		currentFlashcard += 1;
+		clicksOnTheCard   = 0;
+	}
+
+	const cardAnswer = document.querySelector("p.answer");
+	cardAnswer.classList.add("display-none");
+
+	renderCardQuantity();
+
+	cardContent.removeChild(cardAnswer);
+
+	const cardQuestion = document.createElement("p");
+    cardQuestion.classList.add("question");
+	cardQuestion.textContent = flashcards[currentFlashcard].question;
+
+	cardContent.appendChild(cardQuestion);
+}
+
 startButton.addEventListener("click", startFlashCards);
 cardContent.addEventListener("click", revealAnswer);
+buttonNext.addEventListener("click", revealNextQuestion);
