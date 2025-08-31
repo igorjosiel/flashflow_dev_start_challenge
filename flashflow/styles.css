@@ -116,6 +116,11 @@ h1 {
     text-align: center;
 }
 
+.button-container {
+    display: flex;
+    gap: 1rem;
+}
+
 .button-container button {
     width: 12.4rem;
     height: 4rem;
@@ -139,6 +144,8 @@ h1 {
     background-color: var(--purple-200);
 }
 
-.button-start {
+.button-start,
+#button-next,
+.button-restart {
     margin-top: 1rem;
 }
