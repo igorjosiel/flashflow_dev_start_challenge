@@ -118,7 +118,7 @@ h1 {
 
 .button-container {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .button-container button {
@@ -145,6 +145,7 @@ h1 {
 }
 
 .button-start,
+#button-previous,
 #button-next,
 .button-restart {
     margin-top: 1rem;

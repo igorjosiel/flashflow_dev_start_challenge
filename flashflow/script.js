@@ -21,12 +21,13 @@ const flashcards = [
 	},
 ];
 
-const startButton   = document.querySelector("button.button-start");
-const restartButton = document.querySelector("button.button-restart");
-const cardSection   = document.getElementById("card-section");
-const buttonNext    = document.getElementById("button-next");
-const cardQuestion  = document.querySelector("p.question");
-const cardContent   = document.querySelector("div.card-content");
+const startButton    = document.querySelector("button.button-start");
+const restartButton  = document.querySelector("button.button-restart");
+const cardSection    = document.getElementById("card-section");
+const buttonPrevious = document.getElementById("button-previous");
+const buttonNext     = document.getElementById("button-next");
+const cardQuestion   = document.querySelector("p.question");
+const cardContent    = document.querySelector("div.card-content");
 
 const flashcardsSize = flashcards.length;
 
@@ -85,19 +86,24 @@ function setButtonNextCursor(cursor) {
 	buttonNext.style.cursor = cursor;
 }
 
+function setButtonPreviousCursor(cursor) {
+	buttonPrevious.style.cursor = cursor;
+}
+
 function startFlashCards() {
     startButton.classList.add("display-none");
     
     cardSection.classList.remove("display-none");
     cardSection.classList.add("card-container");
 
+	buttonPrevious.classList.remove("display-none");
     buttonNext.classList.remove("display-none");
-
 	restartButton.classList.remove("display-none");
 
 	createCardQuantityParagraph();
 	renderCardQuantityParagraph();
 	setButtonNextCursor("not-allowed");
+	setButtonPreviousCursor("not-allowed");
 
 	cardQuestion.textContent = flashcards[currentFlashcard].question;
 }
@@ -128,6 +134,19 @@ function revealAnswer() {
 	else setButtonNextCursor("pointer");
 }
 
+function revealPreviousQuestion() {
+	if (currentFlashcard === 0) return;
+
+	if (firstClickOnTheCard) removeCardAnswerParagraph();
+	else removeCardQuestionParagraph();
+
+	currentFlashcard -= 1;
+	firstClickOnTheCard = false;
+
+	createCardQuestionParagraph();
+	renderCardQuantityParagraph();
+}
+
 function revealNextQuestion() {
 	const isLastFlashcard = currentFlashcard === (flashcardsSize - 1);
 
@@ -141,9 +160,11 @@ function revealNextQuestion() {
 	createCardQuestionParagraph();
 	renderCardQuantityParagraph();
 	setButtonNextCursor("not-allowed");
+	setButtonPreviousCursor("pointer");
 }
 
 startButton.addEventListener("click", startFlashCards);
 cardContent.addEventListener("click", revealAnswer);
+buttonPrevious.addEventListener("click", revealPreviousQuestion);
 buttonNext.addEventListener("click", revealNextQuestion);
 restartButton.addEventListener("click", restartFlashCards);
