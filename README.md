@@ -2,8 +2,12 @@
 
 Projeto desenvolvido como desafio da minha pós-graduação, com o objetivo de praticar os conhecimentos adquiridos em **HTML**, **CSS** e **JavaScript**. Desafio criado pela **Faculdade de Tecnologia Rocketseat**.
 
+![FlashFlow - Início](./flashflow/prints/flashflow_iniciar.png)
+![FlashFlow - Jogando](./flashflow/prints/flashflow_jogando.png)
+
 ## 📂 Estrutura do Projeto
-flashflow/  
+flashflow/
+|── prints  
 │── index.html  
 │── styles.css  
 │── script.js
