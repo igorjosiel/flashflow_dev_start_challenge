@@ -80,6 +80,10 @@ function removeCardAnswerParagraph() {
 	cardContent.removeChild(cardAnswer);
 }
 
+function setButtonNextCursor(cursor) {
+	buttonNext.style.cursor = cursor;
+}
+
 function startFlashCards() {
     startButton.classList.add("display-none");
     
@@ -90,6 +94,7 @@ function startFlashCards() {
 
 	createCardQuantityParagraph();
 	renderCardQuantityParagraph();
+	setButtonNextCursor("not-allowed");
 
 	cardQuestion.textContent = flashcards[currentFlashcard].question;
 }
@@ -101,6 +106,11 @@ function revealAnswer() {
     createCardAnswerParagraph();
 
     firstClickOnTheCard = true;
+
+	const isLastFlashcard = currentFlashcard === (flashcardsSize - 1);
+
+	if (isLastFlashcard) setButtonNextCursor("not-allowed");
+	else setButtonNextCursor("pointer");
 }
 
 function revealNextQuestion() {
@@ -115,6 +125,7 @@ function revealNextQuestion() {
 	removeCardAnswerParagraph();
 	createCardQuestionParagraph();
 	renderCardQuantityParagraph();
+	setButtonNextCursor("not-allowed");
 }
 
 startButton.addEventListener("click", startFlashCards);
