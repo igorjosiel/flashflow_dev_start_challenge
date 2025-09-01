@@ -6,7 +6,7 @@ Projeto desenvolvido como desafio da minha pós-graduação, com o objetivo de p
 ![FlashFlow - Jogando](./flashflow/prints/flashflow_jogando.png)
 
 ## 📂 Estrutura do Projeto
-flashflow/
+flashflow/  
 |── prints  
 │── index.html  
 │── styles.css  
