@@ -36,7 +36,7 @@ Esse projeto foi construído como prática para reforçar conceitos fundamentais
 ## 📌 Como Executar
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/flashflow.git
+   git clone https://github.com/igorjosiel/flashflow_dev_start_challenge.git
 
 2. Acesse a pasta do projeto:
     ```bash
